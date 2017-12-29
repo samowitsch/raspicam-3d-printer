@@ -1,4 +1,6 @@
 <?php
+require 'vendor/autoload.php';
+
 if (isset($_GET['enable'])) {
     switch ($_GET['enable']) {
 	case '0':
@@ -14,32 +16,18 @@ $enabled = false;
 if (file_exists('ENABLED')) {
     $enabled = true;
 }
-?>
-<html>
-    <head>
-	<title>Raspicam1</title>
-	<meta http-equiv="refresh" content="15">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link href="style.css" rel="stylesheet">
-    </head>
-    <body>
-	<h1>Raspicam 1</h1>
-	<p>
-	<div class="btn-group">
-	    <a class="btn btn-default" href="cam-archive.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> zum Archiv</a>
-<?php
-if ($enabled) {
-    echo '<div class="btn btn-default"><span class="glyphicon glyphicon-camera green" aria-hidden="true"></span> active</div><div class="btn btn-default"><a href="?enable=0"><span class="glyphicon glyphicon-stop red" aria-hidden="true"></span> disable</a></div>';
-} else {
-    echo '<div class="btn btn-default"><span class="glyphicon glyphicon-camera red" aria-hidden="true"></span> inactive</div><div class="btn btn-default"><a href="?enable=1"><span class="glyphicon glyphicon-play green" aria-hidden="true"></span> enable</a></div>';
-}
-?>
-	    <div class="btn btn-default"><a href=""><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;refresh</a></div>
-	</div>
-    </p>
-    <img src="cam.jpg?<?php echo time(); ?>"
-	 style="width: 100%;height:auto;max-width:800px"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
-</html>
+
+$loader = new Twig_Loader_Filesystem('templates');
+$twig = new Twig_Environment($loader, array(
+    'debug' => true,
+    'cache' => 'compilation_cache',
+	));
+
+$template = $twig->load('cam.twig');
+
+echo $template->render(
+	[
+	    'recording' => $enabled,
+	    'time' => time(),
+	]
+);
