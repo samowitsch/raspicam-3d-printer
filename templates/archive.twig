@@ -1,0 +1,65 @@
+{% extends "layout.twig" %}
+
+{% block title %}Raspicam archive{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link href="Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <h1>Raspicam 1 archive  [<?php echo $totalItems ?> pic(s)]</h1>
+	<p><a class="btn btn-default"  href="cam.php"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> zurück</a></p>
+
+	<?php
+	echo '<p>' . $paginator . '</p>';
+	echo '<div class="thumb-container popup-gallery">';
+	foreach ($subFiles as $k => $f) {
+	    switch ($f) {
+		case ".":
+		case "..":
+		    continue;
+		default:
+
+		    $fp = 'archive/' . $f;
+		    $fpt = 'archive-thumbs/' . $f;
+		    if (file_exists($fpt)) {
+			$ii = getimagesize($fpt);
+			$fs = number_format(filesize($fpt) / 1024, 2, ',', '.');
+			$fi = $f . ' (' . $ii[0] . 'x' . $ii[1] . 'px / ' . $fs . 'kb)';
+			$fp = $fpt;
+		    } elseif (file_exists($fp)) {
+			$ii = getimagesize($fp);
+			$fs = number_format(filesize($fp) / 1024, 2, ',', '.');
+			$fi = $f . ' (' . $ii[0] . 'x' . $ii[1] . 'px / ' . $fs . 'kb)';
+		    }
+		    echo '<div class="thumb-wrap">
+				<a href="archive/' . $f . '"><img class="thumbs" title="' . $fi . '" src="' . $fp . '"/></a>
+				<div class="btn-group"><button class="btn btn-danger btn-sm delete" data-href="cam-archive.php?page=' . $currentPage . '&delete=' . $f . '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></div>
+				</div>';
+
+
+		    break;
+	    }
+	}
+
+	echo '</div>';
+	echo '<p>' . $paginator . '</p>';
+	?>
+
+	<p><a class="btn btn-default" href="cam.php"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> zurück</a></p>
+	<div class="alert alert-info" role="alert">
+	    <h4>Disc usage:</h4>
+	    <?php echo $du; ?>
+	</div>
+
+
+
+{% endblock %}
+
+{% block footerIncludes %}
+    {{ parent() }}
+    <script src="Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="script.js"></script>
+{% endblock %}
