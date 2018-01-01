@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block content %}
-
     <h1>Raspicam 1 archive  [{{totalItems}} pic(s)]</h1>
     <p><a class="btn btn-default"  href="cam.php"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> zurück</a></p>
 
@@ -16,24 +15,22 @@
 
     <p>{{paginator|raw}}</p>
     <div class="thumb-container popup-gallery">
-    </div>
 
     {% for file in subFiles %}
-	{%if file != "." and file != ".." %}
 
 	    <div class="thumb-wrap">
-		<a href="archive/{{file}}">
-		    <img class="thumbs" title="" src="archive/{{file}}"/>
+		<a href="{{file.file}}">
+		    <img class="thumbs" title="" src="{{file.thumbPath}}"/>
 		</a>
 		<div class="btn-group">
-		    <button class="btn btn-danger btn-sm delete" data-href="cam-archive.php?page={{currentPage}}&delete={{file}}">
+		    <button class="btn btn-danger btn-sm delete" data-href="cam-archive.php?page={{currentPage}}&delete={{file.file}}">
 			<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 		    </button>
 		</div>
 	    </div>
 
-	{%endif%}
     {%endfor%}
+    </div>
 
     <p>{{paginator|raw}}</p>
 
@@ -42,9 +39,6 @@
 	<h4>Disc usage:</h4>
 	{{diskUsage|raw}}
     </div>
-
-
-
 {% endblock %}
 
 {% block footerIncludes %}

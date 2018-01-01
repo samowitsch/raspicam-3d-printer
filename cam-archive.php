@@ -1,4 +1,5 @@
 <?php
+
 require 'vendor/autoload.php';
 
 use JasonGrimes\Paginator;
@@ -6,7 +7,7 @@ use JasonGrimes\Paginator;
 if (isset($_GET['delete'])) {
     unlink('./archive/' . $_GET['delete']);
     if (file_exists('./archive-thumbs/' . $_GET['delete'])) {
-        unlink('./archive-thumbs/' . $_GET['delete']);
+	unlink('./archive-thumbs/' . $_GET['delete']);
     }
     $message = '
 <div class="alert alert-danger" role="alert">
@@ -33,6 +34,19 @@ if (file_exists('usage.txt')) {
     $diskUsage = '<p>' . nl2br(file_get_contents('usage.txt')) . '</p>';
 }
 
+$newSubFiles = [];
+foreach ($subFiles as $key => $file) {
+    if ($file === '..' && $file === '.') {
+	continue;
+    }
+    $f = new \stdClass();
+    $f->file = 'archive/' . $file;
+    $f->thumbPath = file_exists('archive-thumbs/' . $file) ?
+	    'archive-thumbs/' . $file :
+	    'archive/' . $file;
+    array_push($newSubFiles, $f);
+}
+
 $loader = new Twig_Loader_Filesystem('templates');
 $twig = new Twig_Environment($loader, array(
     'debug' => true,
@@ -43,11 +57,9 @@ $template = $twig->load('archive.twig');
 
 echo $template->render(
 	[
-	    'recording' => $enabled,
-	    'time' => time(),
 	    'paginator' => $paginator,
 	    'files' => $files,
-	    'subFiles' => $subFiles,
+	    'subFiles' => $newSubFiles,
 	    'totalItems' => $totalItems,
 	    'itemsPerPage' => $itemsPerPage,
 	    'currentPage' => $currentPage,
