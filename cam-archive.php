@@ -40,6 +40,7 @@ foreach ($subFiles as $key => $file) {
 	continue;
     }
     $f = new \stdClass();
+    $f->name = $file;
     $f->file = 'archive/' . $file;
     $f->thumbPath = file_exists('archive-thumbs/' . $file) ?
 	    'archive-thumbs/' . $file :
