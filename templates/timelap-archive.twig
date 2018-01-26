@@ -1,0 +1,56 @@
+{% extends "layout.twig" %}
+
+{% block title %}Raspicam archive{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link href="static/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    {{message|raw}}
+
+    <p>{{paginator|raw}}</p>
+    <div class="thumb-container popup-gallery">
+
+	{% for file in subFiles %}
+
+	    <div class="thumb-wrap">
+		{%if not file.rendering%}
+		    <video class="thumbs videothumbs" controls poster="{{file.thumb}}">
+			<source src="{{file.file}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+		    </video>
+		    <div class="btn-group">
+			<button class="btn btn-danger btn-sm delete" data-href="timelap-archive.php?page={{currentPage}}&delete={{file.name}}">
+			    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+			</button>
+		    </div>
+		{%else%}
+		    <img class="thumbs videothumbs"
+			 src="{{file.thumb}}" style="width:360px;height:270px;vertical-align: initial;"
+			 title="ffmpeg rendert im Moment" />
+		    <div class="btn-group">
+			<button class="btn btn-danger btn-sm">
+			    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+			</button>
+		    </div>
+		{%endif%}
+	    </div>
+
+	{%endfor%}
+    </div>
+
+    <p>{{paginator|raw}}</p>
+
+    <div class="alert alert-info" role="alert">
+	<h4>Disc usage:</h4>
+	{{diskUsage|raw}}
+    </div>
+{% endblock %}
+
+{% block footerIncludes %}
+    {{ parent() }}
+    <script src="static/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="static/script.js"></script>
+{% endblock %}

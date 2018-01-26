@@ -8,8 +8,6 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Raspicam 1 archive  [{{totalItems}} pic(s)]</h1>
-    <p><a class="btn btn-default"  href="cam.php"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> zurück</a></p>
 
     {{message|raw}}
 
@@ -34,7 +32,6 @@
 
     <p>{{paginator|raw}}</p>
 
-    <p><a class="btn btn-default" href="cam.php"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> zurück</a></p>
     <div class="alert alert-info" role="alert">
 	<h4>Disc usage:</h4>
 	{{diskUsage|raw}}

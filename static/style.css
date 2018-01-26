@@ -1,62 +1,80 @@
 body {
-	padding: 20px;
-	background-color: #eee;
+    padding: 20px;
+    background-color: #eee;
 }
 
 .thumb-container {
-	display: block;
-	clear:both;
+    display: block;
+    clear:both;
 }
 
 .thumb-wrap {
-	display: inline-block;
-	position: relative;
+    display: inline-block;
+    position: relative;
 }
 
 .thumb-wrap .btn-group {
-	position: absolute;
-	display: block;
-	vertical-align: top;
-	z-index: 1000;
-	top: 10px;
-	right: 10px;
+    position: absolute;
+    display: block;
+    vertical-align: top;
+    z-index: 1000;
+    top: 10px;
+    right: 10px;
 }
 
 .thumbs {
-	position: relative;
-	width: 180px;
-	height: 135px;
-	border: 3px solid #ddd;
-	transition: all .3s ease-in-out;
-	-webkit-transition: all 50ms ease-in;
-        -webkit-transform: scale(1); 
-    	-ms-transition: all 50ms ease-in;
-	-ms-transform: scale(1); 
-	-moz-transition: all 50ms ease-in;
-	-moz-transform: scale(1);
-	transition: all 50ms ease-in;
-	transform: scale(1); 
+    position: relative;
+    width: 180px;
+    height: 135px;
+    border: 3px solid #ddd;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all 50ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 50ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 50ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 50ms ease-in;
+    transform: scale(1);
 }
 .thumbs:hover {
-	box-shadow: 0px 0px 25px #000000;
-    	z-index: 1;
-	-webkit-transition: all 50ms ease-in;
-	-webkit-transform: scale(1.1);
-	-ms-transition: all 50ms ease-in;
-	-ms-transform: scale(1.1);   
-	-moz-transition: all 50ms ease-in;
-	-moz-transform: scale(1.1);
-	transition: all 50ms ease-in;
-	transform: scale(1.1);
-	transition: scale(1.1);
+    box-shadow: 0px 0px 25px #000000;
+    z-index: 1;
+    -webkit-transition: all 50ms ease-in;
+    -webkit-transform: scale(1.1);
+    -ms-transition: all 50ms ease-in;
+    -ms-transform: scale(1.1);
+    -moz-transition: all 50ms ease-in;
+    -moz-transform: scale(1.1);
+    transition: all 50ms ease-in;
+    transform: scale(1.1);
+    transition: scale(1.1);
 }
 
+.videothumbs {
+    width: 360px;
+    height: auto;
+}
+.videothumbs:hover{
+    -webkit-transition: all 50ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 50ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 50ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 50ms ease-in;
+    transform: scale(1);
+    transition: scale(1);
+}
 
 .green {
-	color: green;
+    color: green;
 }
 
 .red {
-	color: red;
+    color: red;
 }
 
+div.alert {
+    margin-top: 10px;
+}

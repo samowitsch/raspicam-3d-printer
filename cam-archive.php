@@ -36,7 +36,7 @@ if (file_exists('usage.txt')) {
 
 $newSubFiles = [];
 foreach ($subFiles as $key => $file) {
-    if ($file === '..' && $file === '.') {
+    if ($file === '..' || $file === '.') {
 	continue;
     }
     $f = new \stdClass();
