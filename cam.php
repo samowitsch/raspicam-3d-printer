@@ -12,6 +12,14 @@ if (isset($_GET['enable'])) {
     }
 }
 
+$diskUsage = '';
+$diskUsageItems = [];
+if (file_exists('usage.txt')) {
+    //$diskUsage = '<p>' . nl2br(file_get_contents('usage.txt')) . '</p>';
+    $diskUsage = file_get_contents('usage.txt');
+    $diskUsageItems = array_filter(explode(chr(10),$diskUsage));
+}
+
 $enabled = false;
 if (file_exists('ENABLED')) {
     $enabled = true;
@@ -30,5 +38,8 @@ echo $template->render(
         'recording' => $enabled,
         'time' => time(),
         'temp' => shell_exec('sudo vcgencmd measure_temp'),
+        'clock' => shell_exec('sudo vcgencmd measure_clock arm'),
+        'diskUsage' => $diskUsage,
+        'diskUsageItems' => $diskUsageItems,
     ]
 );

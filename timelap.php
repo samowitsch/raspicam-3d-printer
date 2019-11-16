@@ -13,6 +13,13 @@ $files = scandir('archive', SCANDIR_SORT_DESCENDING);
 $filesJson = json_encode($files, JSON_PRETTY_PRINT);
 $filesCount = (count($files) - 2);
 
+$diskUsage = '';
+$diskUsageItems = [];
+if (file_exists('usage.txt')) {
+    //$diskUsage = '<p>' . nl2br(file_get_contents('usage.txt')) . '</p>';
+    $diskUsage = file_get_contents('usage.txt');
+    $diskUsageItems = array_filter(explode(chr(10),$diskUsage));
+}
 
 $range = [1,$filesCount];
 if (isset($_GET['range'])) {
@@ -67,5 +74,8 @@ echo $template->render(
 	    'renderFileExists' => checkRenderStatus(),
 	    'renderFileData' => (checkRenderStatus()) ? getRenderData() : '',
         'temp' => shell_exec('sudo vcgencmd measure_temp'),
+        'clock' => shell_exec('sudo vcgencmd measure_clock arm'),
+        'diskUsage' => $diskUsage,
+        'diskUsageItems' => $diskUsageItems,
 	]
 );

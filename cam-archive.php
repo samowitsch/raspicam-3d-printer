@@ -7,7 +7,7 @@ use JasonGrimes\Paginator;
 if (isset($_GET['delete'])) {
     unlink('./archive/' . $_GET['delete']);
     if (file_exists('./archive-thumbs/' . $_GET['delete'])) {
-	unlink('./archive-thumbs/' . $_GET['delete']);
+        unlink('./archive-thumbs/' . $_GET['delete']);
     }
     $message = '
 <div class="alert alert-danger" role="alert">
@@ -30,21 +30,24 @@ $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern
 $subFiles = array_slice($files, ($currentPage - 1) * $itemsPerPage, $itemsPerPage);
 
 $diskUsage = '';
+$diskUsageItems = [];
 if (file_exists('usage.txt')) {
-    $diskUsage = '<p>' . nl2br(file_get_contents('usage.txt')) . '</p>';
+    //$diskUsage = '<p>' . nl2br(file_get_contents('usage.txt')) . '</p>';
+    $diskUsage = file_get_contents('usage.txt');
+    $diskUsageItems = array_filter(explode(chr(10),$diskUsage));
 }
 
 $newSubFiles = [];
 foreach ($subFiles as $key => $file) {
     if ($file === '..' || $file === '.') {
-	continue;
+        continue;
     }
     $f = new \stdClass();
     $f->name = $file;
     $f->file = 'archive/' . $file;
     $f->thumbPath = file_exists('archive-thumbs/' . $file) ?
-	    'archive-thumbs/' . $file :
-	    'archive/' . $file;
+        'archive-thumbs/' . $file :
+        'archive/' . $file;
     array_push($newSubFiles, $f);
 }
 
@@ -52,20 +55,22 @@ $loader = new Twig_Loader_Filesystem('templates');
 $twig = new Twig_Environment($loader, array(
     'debug' => true,
     'cache' => 'compilation_cache',
-	));
+));
 
 $template = $twig->load('archive.twig');
 
 echo $template->render(
-	[
-	    'paginator' => $paginator,
-	    'files' => $files,
-	    'subFiles' => $newSubFiles,
-	    'totalItems' => $totalItems,
-	    'itemsPerPage' => $itemsPerPage,
-	    'currentPage' => $currentPage,
-	    'diskUsage' => $diskUsage,
-	    'message' => $message,
+    [
+        'paginator' => $paginator,
+        'files' => $files,
+        'subFiles' => $newSubFiles,
+        'totalItems' => $totalItems,
+        'itemsPerPage' => $itemsPerPage,
+        'currentPage' => $currentPage,
+        'diskUsage' => $diskUsage,
+        'diskUsageItems' => $diskUsageItems,
+        'message' => $message,
         'temp' => shell_exec('sudo vcgencmd measure_temp'),
-	]
+        'clock' => shell_exec('sudo vcgencmd measure_clock arm'),
+    ]
 );

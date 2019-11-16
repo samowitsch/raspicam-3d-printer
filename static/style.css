@@ -64,7 +64,10 @@ body {
     -moz-transform: scale(1);
     transition: all 50ms ease-in;
     transform: scale(1);
-    transition: scale(1);
+}
+
+.dropdown-menu {
+    z-index: 1001;
 }
 
 .green {
@@ -77,4 +80,17 @@ body {
 
 div.alert {
     margin-top: 10px;
+}
+
+.blink {
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

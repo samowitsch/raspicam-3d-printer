@@ -36,8 +36,11 @@ $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern
 $subFiles = array_slice($files, ($currentPage - 1) * $itemsPerPage, $itemsPerPage);
 
 $diskUsage = '';
+$diskUsageItems = [];
 if (file_exists('usage.txt')) {
-    $diskUsage = '<p>' . nl2br(file_get_contents('usage.txt')) . '</p>';
+    //$diskUsage = '<p>' . nl2br(file_get_contents('usage.txt')) . '</p>';
+    $diskUsage = file_get_contents('usage.txt');
+    $diskUsageItems = array_filter(explode(chr(10),$diskUsage));
 }
 
 $newSubFiles = [];
@@ -78,5 +81,8 @@ echo $template->render(
 	    'diskUsage' => $diskUsage,
 	    'message' => $message,
         'temp' => shell_exec('sudo vcgencmd measure_temp'),
+        'clock' => shell_exec('sudo vcgencmd measure_clock arm'),
+        'diskUsage' => $diskUsage,
+        'diskUsageItems' => $diskUsageItems,
 	]
 );
