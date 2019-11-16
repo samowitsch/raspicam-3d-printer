@@ -8,3 +8,4 @@ ENABLED
 cam.jpg
 cam-thumb.jpg
 compilation_cache/*
+vendor/

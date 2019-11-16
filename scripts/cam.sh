@@ -18,7 +18,8 @@ cp /var/www/html/cam.jpg "/var/www/html/archive/cam-$TEXT.jpg"
 cp /var/www/html/cam-thumb.jpg "/var/www/html/archive-thumbs/cam-$TEXT.jpg"
 
 cd /var/www/html
-du -h ./archive/ > usage.txt
+df -h | grep '/dev/root' > usage.txt
+du -h ./archive/ >> usage.txt
 du -h ./archive-thumbs/ >> usage.txt
 du -h ./timelap/ >> usage.txt
 du -h ./timelap-thumbs/ >> usage.txt

@@ -25,7 +25,7 @@
 		</p>
 		<p>
 		    <input
-			class="btn btn-primary"
+			class="btn btn-primary {% if renderFileExists %}blink{% endif %}"
 			type="submit"
 			value="{% if renderFileExists %}Warte auf Rendering{%else%}Erzeuge Timelap render file{%endif%}"
 			{% if renderFileExists %}
