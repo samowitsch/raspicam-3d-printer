@@ -77,5 +77,6 @@ echo $template->render(
 	    'currentPage' => $currentPage,
 	    'diskUsage' => $diskUsage,
 	    'message' => $message,
+        'temp' => shell_exec('sudo vcgencmd measure_temp'),
 	]
 );

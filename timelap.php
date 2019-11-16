@@ -66,5 +66,6 @@ echo $template->render(
 	    'filesJson' => $filesJson,
 	    'renderFileExists' => checkRenderStatus(),
 	    'renderFileData' => (checkRenderStatus()) ? getRenderData() : '',
+        'temp' => shell_exec('sudo vcgencmd measure_temp'),
 	]
 );
