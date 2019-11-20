@@ -5,7 +5,7 @@ body {
 
 .thumb-container {
     display: block;
-    clear:both;
+    clear: both;
 }
 
 .thumb-wrap {
@@ -37,6 +37,7 @@ body {
     transition: all 50ms ease-in;
     transform: scale(1);
 }
+
 .thumbs:hover {
     box-shadow: 0px 0px 25px #000000;
     z-index: 1;
@@ -55,7 +56,8 @@ body {
     width: 360px;
     height: auto;
 }
-.videothumbs:hover{
+
+.videothumbs:hover {
     -webkit-transition: all 50ms ease-in;
     -webkit-transform: scale(1);
     -ms-transition: all 50ms ease-in;
@@ -93,4 +95,12 @@ div.alert {
     to {
         opacity: 1;
     }
+}
+
+.cam-logo {
+    display: inline-block;
+    width: 29px;
+    height: auto;
+    float: left;
+    margin: 2px 10px 0 0;
 }
