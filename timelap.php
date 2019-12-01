@@ -43,6 +43,10 @@ if (isset($_GET['range'])) {
 		    $filename = 'TIMELAP.txt';
 		    file_put_contents($filename, implode(PHP_EOL . 'duration 0.05' . PHP_EOL , $list));
 		    chmod($filename, 0777);
+
+		    // redirect to remove get params to prevent double renderings on page reload.
+            header("Location: timelap.php");
+            exit;
 	    }
 	}
 
