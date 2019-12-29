@@ -12,7 +12,7 @@
     {{message|raw}}
 
     <p>{{paginator|raw}}</p>
-    <div class="thumb-container popup-gallery">
+    <div class="thumb-container">
 
 	{% for file in subFiles %}
 
@@ -22,6 +22,9 @@
 			<source src="{{file.file}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
 		    </video>
 		    <div class="btn-group">
+			<a href="{{file.file}}" class="btn btn-default btn-sm" title="download file {{file.file}}">
+			    <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+			</a>
 			<button class="btn btn-danger btn-sm delete" data-href="timelap-archive.php?page={{currentPage}}&delete={{file.name}}">
 			    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 			</button>
