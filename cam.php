@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 require 'vendor/autoload.php';
 
 if (isset($_GET['enable'])) {
@@ -25,8 +26,8 @@ if (file_exists('ENABLED')) {
     $enabled = true;
 }
 
-$loader = new Twig_Loader_Filesystem('templates');
-$twig = new Twig_Environment($loader, array(
+$loader = new Twig\Loader\FilesystemLoader('templates');
+$twig = new Twig\Environment($loader, array(
     'debug' => true,
     'cache' => 'compilation_cache',
 ));
@@ -35,7 +36,8 @@ $template = $twig->load('cam.twig');
 
 echo $template->render(
     [
-        'recording' => $enabled,
+	    'recording' => $enabled,
+	    'processPid' => shell_exec('pgrep cam.sh') ?? 'background cam.sh not running?',
         'time' => time(),
         'temp' => shell_exec('sudo vcgencmd measure_temp'),
         'clock' => shell_exec('sudo vcgencmd measure_clock arm'),

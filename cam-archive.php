@@ -51,8 +51,8 @@ foreach ($subFiles as $key => $file) {
     array_push($newSubFiles, $f);
 }
 
-$loader = new Twig_Loader_Filesystem('templates');
-$twig = new Twig_Environment($loader, array(
+$loader = new Twig\Loader\FilesystemLoader('templates');
+$twig = new Twig\Environment($loader, array(
     'debug' => true,
     'cache' => 'compilation_cache',
 ));

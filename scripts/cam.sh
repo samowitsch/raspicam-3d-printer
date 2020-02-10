@@ -1,5 +1,8 @@
 #!/bin/bash
 
+while true; do
+
+
 #DATE=$(date +%d.%m.%Y)
 DATE=$(date +%Y%m%d)
 HOUR=$(date +%H%M%S)
@@ -25,3 +28,8 @@ du -h ./timelap/ >> usage.txt
 du -h ./timelap-thumbs/ >> usage.txt
 
 fi
+
+# processing time takes round about 4 secs so we will wait 26 secs to get 30 secs.
+sleep 26
+
+done
