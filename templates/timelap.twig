@@ -73,12 +73,12 @@
             $('#thumbSlider').slider().on('slideStop', function (evt) {
                 console.log(evt);
                 var newValue = evt.value;
-                $('#fromImage').attr('src', 'archive/' + Timelap.files[newValue[0] - 1]);
-                $('#toImage').attr('src', 'archive/' + Timelap.files[newValue[1] - 1]);
+                $('#fromImage').attr('src', 'archive-thumbs/' + Timelap.files[newValue[0] - 1]);
+                $('#toImage').attr('src', 'archive-thumbs/' + Timelap.files[newValue[1] - 1]);
             });
             $('.slider-horizontal').css('width', '100%');
-            $('#fromImage').attr('src', 'archive/' + Timelap.files[Timelap.range[0] - 1]);
-            $('#toImage').attr('src', 'archive/' + Timelap.files[Timelap.range[1] - 1]);
+            $('#fromImage').attr('src', 'archive-thumbs/' + Timelap.files[Timelap.range[0] - 1]);
+            $('#toImage').attr('src', 'archive-thumbs/' + Timelap.files[Timelap.range[1] - 1]);
         });
     </script>
 
