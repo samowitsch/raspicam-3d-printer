@@ -54,8 +54,8 @@ if (isset($_GET['range'])) {
 
 $range = json_encode($range, JSON_PRETTY_PRINT);
 
-$loader = new Twig_Loader_Filesystem('templates');
-$twig = new Twig_Environment($loader, array(
+$loader = new Twig\Loader\FilesystemLoader('templates');
+$twig = new Twig\Environment($loader, array(
     'debug' => true,
     'cache' => 'compilation_cache',
 	));

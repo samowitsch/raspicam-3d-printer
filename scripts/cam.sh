@@ -1,5 +1,8 @@
 #!/bin/bash
 
+while true; do
+
+
 #DATE=$(date +%d.%m.%Y)
 DATE=$(date +%Y%m%d)
 HOUR=$(date +%H%M%S)
@@ -10,7 +13,7 @@ ENABLED="/var/www/html/ENABLED"
 if [ -f "$ENABLED" ]
 then
 
-raspistill -w 1024 -h 768 -t 500 -q 60 -v -o /var/www/html/cam.jpg
+raspistill -br 45 -co 110 -ex auto --awb auto -w 1024 -h 768 -t 500 -q 60 -v -o /var/www/html/cam.jpg
 convert /var/www/html/cam.jpg -pointsize 30 -fill yellow -annotate +20+40 "$TEXT" /var/www/html/cam.jpg
 convert /var/www/html/cam.jpg -resize 240 -quality 60% /var/www/html/cam-thumb.jpg
 
@@ -25,3 +28,8 @@ du -h ./timelap/ >> usage.txt
 du -h ./timelap-thumbs/ >> usage.txt
 
 fi
+
+# processing time takes round about 4 secs so we will wait 26 secs to get 30 secs.
+sleep 26
+
+done
