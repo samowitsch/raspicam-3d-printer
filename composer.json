@@ -1,4 +1,9 @@
 {
+    "config": {
+    	"audit": {
+	    "block-insecure": false
+	}
+    }, 
     "require": {
         "jasongrimes/paginator": "^1.0",
         "twig/twig": "~2.0",
