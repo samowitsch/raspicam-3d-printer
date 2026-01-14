@@ -7,7 +7,7 @@ photos with the attached camera and generating a timelap of it.
 
 ## Installation
 
-tbd
+tbd 
 
 ## Usage
 
