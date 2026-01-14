@@ -18,8 +18,11 @@
 
 	    <div class="thumb-wrap">
 		{%if not file.rendering%}
-		    <video class="thumbs videothumbs" controls poster="{{file.thumb}}">
-			<source src="{{file.file}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+		    <video class="thumbs videothumbs" 
+			controls 
+			poster="/{{file.thumb}}"
+		    >
+			<source src="/{{file.file}}" type="video/mp4" />
 		    </video>
 		    <div class="btn-group">
 			<a href="{{file.file}}" class="btn btn-default btn-sm" title="download file {{file.file}}">

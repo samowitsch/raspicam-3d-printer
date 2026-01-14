@@ -34,7 +34,7 @@ $diskUsageItems = [];
 if (file_exists('usage.txt')) {
     //$diskUsage = '<p>' . nl2br(file_get_contents('usage.txt')) . '</p>';
     $diskUsage = file_get_contents('usage.txt');
-    $diskUsageItems = array_filter(explode(chr(10),$diskUsage));
+    $diskUsageItems = array_filter(explode(chr(10), $diskUsage));
 }
 
 $newSubFiles = [];

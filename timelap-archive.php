@@ -5,17 +5,17 @@ require 'vendor/autoload.php';
 use JasonGrimes\Paginator;
 
 if (isset($_GET['delete'])) {
-	$mp4 = './timelap/' . $_GET['delete'];
-	$jpg = './timelap-thumbs/' . str_replace('.mp4','.jpg',$_GET['delete']);
+    $mp4 = './timelap/' . $_GET['delete'];
+    $jpg = './timelap-thumbs/' . str_replace('.mp4', '.jpg', $_GET['delete']);
 
-	if (file_exists($mp4)) {
-	unlink($mp4);
-	}
-	if (file_exists($jpg)) {
-		unlink($jpg);
-	}
+    if (file_exists($mp4)) {
+        unlink($mp4);
+    }
+    if (file_exists($jpg)) {
+        unlink($jpg);
+    }
 
-	$message = '
+    $message = '
 <div class="alert alert-danger" role="alert">
   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
   <span class="sr-only">Deleted:</span>
@@ -40,20 +40,20 @@ $diskUsageItems = [];
 if (file_exists('usage.txt')) {
     //$diskUsage = '<p>' . nl2br(file_get_contents('usage.txt')) . '</p>';
     $diskUsage = file_get_contents('usage.txt');
-    $diskUsageItems = array_filter(explode(chr(10),$diskUsage));
+    $diskUsageItems = array_filter(explode(chr(10), $diskUsage));
 }
 
 $newSubFiles = [];
 foreach ($subFiles as $key => $file) {
     if ($file == '..' || $file == '.') {
-	continue;
+        continue;
     }
     $f = new \stdClass();
     $f->rendering = false;
-    $thumb = 'timelap-thumbs/' . str_replace('.mp4','.jpg',$file);
+    $thumb = 'timelap-thumbs/' . str_replace('.mp4', '.jpg', $file);
     if (!file_exists($thumb)) {
-	$thumb = 'static/pics/waiting.gif';
-	$f->rendering = true;
+        $thumb = 'static/pics/waiting.gif';
+        $f->rendering = true;
     }
 
     $f->name = $file;
@@ -66,23 +66,23 @@ $loader = new Twig\Loader\FilesystemLoader('templates');
 $twig = new Twig\Environment($loader, array(
     'debug' => true,
     'cache' => 'compilation_cache',
-	));
+    ));
 
 $template = $twig->load('timelap-archive.twig');
 
 echo $template->render(
-	[
-	    'paginator' => $paginator,
-	    'files' => $files,
-	    'subFiles' => $newSubFiles,
-	    'totalItems' => $totalItems,
-	    'itemsPerPage' => $itemsPerPage,
-	    'currentPage' => $currentPage,
-	    'diskUsage' => $diskUsage,
-	    'message' => $message,
+    [
+        'paginator' => $paginator,
+        'files' => $files,
+        'subFiles' => $newSubFiles,
+        'totalItems' => $totalItems,
+        'itemsPerPage' => $itemsPerPage,
+        'currentPage' => $currentPage,
+        'diskUsage' => $diskUsage,
+        'message' => $message,
         'temp' => shell_exec('sudo vcgencmd measure_temp'),
         'clock' => shell_exec('sudo vcgencmd measure_clock arm'),
         'diskUsage' => $diskUsage,
         'diskUsageItems' => $diskUsageItems,
-	]
+    ]
 );

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
@@ -18,7 +20,7 @@ $diskUsageItems = [];
 if (file_exists('usage.txt')) {
     //$diskUsage = '<p>' . nl2br(file_get_contents('usage.txt')) . '</p>';
     $diskUsage = file_get_contents('usage.txt');
-    $diskUsageItems = array_filter(explode(chr(10),$diskUsage));
+    $diskUsageItems = array_filter(explode(chr(10), $diskUsage));
 }
 
 $enabled = false;
@@ -36,8 +38,8 @@ $template = $twig->load('cam.twig');
 
 echo $template->render(
     [
-	    'recording' => $enabled,
-	    'processPid' => shell_exec('pgrep cam.sh') ?? 'background cam.sh not running?',
+    'recording' => $enabled,
+    'processPid' => shell_exec('pgrep cam.sh') ?? 'background cam.sh not running?',
         'time' => time(),
         'temp' => shell_exec('sudo vcgencmd measure_temp'),
         'clock' => shell_exec('sudo vcgencmd measure_clock arm'),
