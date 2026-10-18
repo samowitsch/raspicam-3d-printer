@@ -13,7 +13,7 @@ ENABLED="/var/www/html/ENABLED"
 if [ -f "$ENABLED" ]
 then
 
-rpicam-still --brightness 0.45 --contrast 1.1 -e jpg auto --awb auto --width 1024 --height 768 -t 500 -q 60 -v -o /var/www/html/cam.jpg
+rpicam-still --brightness 0.1 --contrast 1.1 -e jpg auto --awb auto --width 1024 --height 768 -t 500 -q 85 -v -o /var/www/html/cam.jpg
 convert /var/www/html/cam.jpg -pointsize 30 -fill yellow -annotate +20+40 "$TEXT" /var/www/html/cam.jpg
 convert /var/www/html/cam.jpg -resize 240 -quality 60% /var/www/html/cam-thumb.jpg
 
