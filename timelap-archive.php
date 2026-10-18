@@ -67,7 +67,7 @@ $loader = new Twig\Loader\FilesystemLoader('templates');
 $twig = new Twig\Environment($loader, array(
     'debug' => true,
     'cache' => 'compilation_cache',
-    ));
+));
 
 $template = $twig->load('timelap-archive.twig');
 
@@ -82,7 +82,7 @@ echo $template->render(
         'diskUsage' => $diskUsage,
         'message' => $message,
         'cpuInfo' => InfoUtility::getCpuInfo(),
-        'diskUsage' => $diskUsage,
-        'diskUsageItems' => $diskUsageItems,
+        'diskInfo' => InfoUtility::getDiskUsage(),
+        'cameraInfo' => InfoUtility::getCameraInfo(),
     ]
 );

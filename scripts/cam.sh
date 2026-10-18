@@ -27,7 +27,7 @@ du -h ./archive-thumbs/ >> usage.txt
 du -h ./timelap/ >> usage.txt
 du -h ./timelap-thumbs/ >> usage.txt
 
-rpicam-still --list-cameras >> usage.txt
+#rpicam-still --list-cameras >> usage.txt
 
 fi
 

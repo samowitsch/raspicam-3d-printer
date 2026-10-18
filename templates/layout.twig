@@ -49,6 +49,18 @@
             {% endfor %}
         </ul>
     </div>
+        <div class="btn-group" role="group">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" title="{{ cameraInfo|raw }}">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Camera info <span
+                    class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            {% for item in cameraInfo|split('\n') %}
+                <li><a href="#">{{ item }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
 </div>
 
 

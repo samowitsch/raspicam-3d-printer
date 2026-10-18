@@ -68,9 +68,9 @@ echo $template->render(
         'totalItems' => $totalItems,
         'itemsPerPage' => $itemsPerPage,
         'currentPage' => $currentPage,
-        'diskUsage' => $diskUsage,
-        'diskUsageItems' => $diskUsageItems,
         'message' => $message,
         'cpuInfo' => InfoUtility::getCpuInfo(),
+        'diskInfo' => InfoUtility::getDiskUsage(),
+        'cameraInfo' => InfoUtility::getCameraInfo(),
     ]
 );

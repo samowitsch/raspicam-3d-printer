@@ -45,7 +45,6 @@ echo $template->render(
         'time' => time(),
         'cpuInfo' => InfoUtility::getCpuInfo(),
         'diskInfo' => InfoUtility::getDiskUsage(),
-        'diskUsage' => $diskUsage,
-        'diskUsageItems' => $diskUsageItems,
+        'cameraInfo' => InfoUtility::getCameraInfo(),
     ]
 );

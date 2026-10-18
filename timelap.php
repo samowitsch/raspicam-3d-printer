@@ -80,7 +80,7 @@ echo $template->render(
         'renderFileExists' => checkRenderStatus(),
         'renderFileData' => (checkRenderStatus()) ? getRenderData() : '',
         'cpuInfo' => InfoUtility::getCpuInfo(),
-        'diskUsage' => $diskUsage,
-        'diskUsageItems' => $diskUsageItems,
+        'diskInfo' => InfoUtility::getDiskUsage(),
+        'cameraInfo' => InfoUtility::getCameraInfo(),
     ]
 );

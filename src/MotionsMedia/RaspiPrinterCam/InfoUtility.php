@@ -6,7 +6,7 @@ namespace MotionsMedia\RaspiPrinterCam;
 class InfoUtility
 {
 
-    public static function getCpuInfo()
+    public static function getCpuInfo(): array
     {
         return [
             'temp' => shell_exec('sudo vcgencmd measure_temp'),
@@ -15,7 +15,7 @@ class InfoUtility
         ];
     }
 
-    public static function getDiskUsage()
+    public static function getDiskUsage(): string
     {
         $diskUsage = '';
 
@@ -28,5 +28,11 @@ class InfoUtility
         }
 
         return $diskUsage;
+    }
+
+
+    public static function getCameraInfo(): string
+    {
+        return shell_exec('rpicam-still --list-cameras');
     }
 }
