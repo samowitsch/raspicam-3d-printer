@@ -17,6 +17,7 @@ photos with the attached camera and generating a timelap of it.
 > sudo apt install php libapache2-mod-php php-mbstring php-curl  
 > sudo apt install git  
 > sudo apt install ffmpeg  
+> sudo apt install imagemagick   
 
 ### Install composer
 
@@ -61,3 +62,8 @@ see [https://crontab.guru](https://crontab.guru) for more crontab syntax
 vendor/bin/php-cs-fixer -vvv fix --dry-run
 vendor/bin/php-cs-fixer fix
 ```
+
+### Misc
+
+Show running script file: ```ps aux | grep "cam.sh"``` or ```ps aux | grep "timelap.sh"```
+Kill running process: e.g. ```kill 1478``` the 1478 you get from ```ps aux``` from above
