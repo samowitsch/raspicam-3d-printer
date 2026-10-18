@@ -30,7 +30,7 @@ echo ">> Timelap file found!"
 
 echo ">> make video from pictures"
 cd /var/www/html
-ffmpeg -f concat -i $RENDERING -vsync vfr -pix_fmt yuv420p -vf scale=480:-1 timelap/$newfile
+ffmpeg -f concat -i $RENDERING -vsync vfr -pix_fmt yuv420p -vf scale=720:-1 timelap/$newfile
 
 duration=$(ffprobe -i timelap/$newfile -show_format -v quiet | sed -n 's/duration=//p' | awk '{print int($1)}')
 thumbTime=$(echo $duration / 1.5 | bc)
