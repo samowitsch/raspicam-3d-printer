@@ -27,6 +27,8 @@ du -h ./archive-thumbs/ >> usage.txt
 du -h ./timelap/ >> usage.txt
 du -h ./timelap-thumbs/ >> usage.txt
 
+rpicam-still --list-cameras >> usage.txt
+
 fi
 
 # processing time takes round about 4 secs so we will wait 26 secs to get 30 secs.
