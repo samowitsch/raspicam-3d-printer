@@ -39,12 +39,12 @@
 		</ul>
     </div>
     <div class="btn-group" role="group">
-        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" title="{{ diskUsage|raw }}">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" title="{{ diskInfo|raw }}">
             <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Disc usage <span
                     class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            {% for item in diskUsageItems %}
+            {% for item in diskInfo|split('\n') %}
                 <li><a href="#">{{ item }}</a></li>
             {% endfor %}
         </ul>
