@@ -18,20 +18,15 @@ class InfoUtility
     public static function getDiskUsage()
     {
         $diskUsage = '';
-        $diskUsageItems = [];
 
         $file = $_SERVER['DOCUMENT_ROOT'] . '/usage.txt';
 
         if (file_exists($file)) {
             $diskUsage = file_get_contents($file);
-            $diskUsageItems = array_filter(explode(chr(10), $diskUsage));
         } else {
             file_put_contents($file, '');
         }
 
-        return [
-            'diskUsage' => $diskUsage,
-            'diskUsageItems' => $diskUsageItems,
-        ];
+        return $diskUsage;
     }
 }
