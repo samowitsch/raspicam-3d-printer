@@ -3,6 +3,7 @@
 require 'vendor/autoload.php';
 
 use JasonGrimes\Paginator;
+use MotionsMedia\RaspiPrinterCam\InfoUtility;
 
 if (isset($_GET['delete'])) {
     unlink('./archive/' . $_GET['delete']);
@@ -70,7 +71,6 @@ echo $template->render(
         'diskUsage' => $diskUsage,
         'diskUsageItems' => $diskUsageItems,
         'message' => $message,
-        'temp' => shell_exec('sudo vcgencmd measure_temp'),
-        'clock' => shell_exec('sudo vcgencmd measure_clock arm'),
+        'cpuInfo' => InfoUtility::getCpuInfo(),
     ]
 );

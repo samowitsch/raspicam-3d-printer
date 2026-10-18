@@ -42,8 +42,8 @@ echo $template->render(
     [
         'recording' => $enabled,
         'processPid' => shell_exec('pgrep cam.sh') ?? 'background cam.sh not running?',
-	'time' => time(),
-	'cpuInfo' => InfoUtility::getCpuInfo(),
+        'time' => time(),
+        'cpuInfo' => InfoUtility::getCpuInfo(),
         'diskUsage' => $diskUsage,
         'diskUsageItems' => $diskUsageItems,
     ]

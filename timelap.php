@@ -9,6 +9,8 @@
  */
 require 'vendor/autoload.php';
 
+use MotionsMedia\RaspiPrinterCam\InfoUtility;
+
 $files = scandir('archive', SCANDIR_SORT_DESCENDING);
 $filesJson = json_encode($files, JSON_PRETTY_PRINT);
 $filesCount = (count($files) - 2);
@@ -77,8 +79,7 @@ echo $template->render(
         'filesJson' => $filesJson,
         'renderFileExists' => checkRenderStatus(),
         'renderFileData' => (checkRenderStatus()) ? getRenderData() : '',
-        'temp' => shell_exec('sudo vcgencmd measure_temp'),
-        'clock' => shell_exec('sudo vcgencmd measure_clock arm'),
+        'cpuInfo' => InfoUtility::getCpuInfo(),
         'diskUsage' => $diskUsage,
         'diskUsageItems' => $diskUsageItems,
     ]

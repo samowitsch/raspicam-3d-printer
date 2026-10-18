@@ -3,6 +3,7 @@
 require 'vendor/autoload.php';
 
 use JasonGrimes\Paginator;
+use MotionsMedia\RaspiPrinterCam\InfoUtility;
 
 if (isset($_GET['delete'])) {
     $mp4 = './timelap/' . $_GET['delete'];
@@ -80,8 +81,7 @@ echo $template->render(
         'currentPage' => $currentPage,
         'diskUsage' => $diskUsage,
         'message' => $message,
-        'temp' => shell_exec('sudo vcgencmd measure_temp'),
-        'clock' => shell_exec('sudo vcgencmd measure_clock arm'),
+        'cpuInfo' => InfoUtility::getCpuInfo(),
         'diskUsage' => $diskUsage,
         'diskUsageItems' => $diskUsageItems,
     ]
