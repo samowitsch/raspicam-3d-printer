@@ -9,5 +9,6 @@ cam.jpg
 cam-thumb.jpg
 compilation_cache/*
 vendor/*
+bin
 
 .php-cs-fixer.cache
