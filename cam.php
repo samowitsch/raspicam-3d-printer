@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use MotionsMedia\RaspiPrinterCam\InfoUtility;
+
 require 'vendor/autoload.php';
 
 if (isset($_GET['enable'])) {
