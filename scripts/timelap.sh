@@ -37,7 +37,7 @@ thumbTime=$(echo $duration / 1.5 | bc)
 
 echo ">> make thumbnaill from video of sec. $duration"
 
-ffmpeg -ss $thumbTime -i timelap/$newfile -t 1 -s 480x360 -f image2 timelap-thumbs/$picfile
+ffmpeg -ss $thumbTime -i timelap/$newfile -t 1 -s 960x720 -f image2 timelap-thumbs/$picfile
 
 echo ">> Delete Timelap file!"
 rm $RENDERING
