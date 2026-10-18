@@ -3,60 +3,64 @@
 {% block title %}Timelap Archive{% endblock %}
 
 {% block head %}
-    {{ parent() }}
-    <link href="static/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
+	{{ parent() }}
+	<link href="static/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 
-    {{message|raw}}
+	{{ message|raw }}
 
-    <p>{{paginator|raw}}</p>
-    <div class="thumb-container">
+	<p>{{ paginator|raw }}</p>
+	<div class="thumb-container">
 
-	{% for file in subFiles %}
+		{% for file in subFiles %}
 
-	    <div class="thumb-wrap">
-		{%if not file.rendering%}
-		    <video class="thumbs videothumbs" 
-			controls 
-			poster="/{{file.thumb}}"
-		    >
-			<source src="/{{file.file}}" type="video/mp4" />
-		    </video>
-		    <div class="btn-group">
-			<a href="{{file.file}}" class="btn btn-default btn-sm" title="download file {{file.file}}">
-			    <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-			</a>
-			<button class="btn btn-danger btn-sm delete" data-href="timelap-archive.php?page={{currentPage}}&delete={{file.name}}">
-			    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-			</button>
-		    </div>
-		{%else%}
-		    <img class="thumbs videothumbs"
-			 src="{{file.thumb}}" style="width:360px;height:270px;vertical-align: initial;"
-			 title="ffmpeg rendert im Moment" />
-		    <div class="btn-group">
-			<button class="btn btn-danger btn-sm">
-			    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-			</button>
-		    </div>
-		{%endif%}
-	    </div>
+			<div class="thumb-wrap">
+				{% if not file.rendering %}
+					<video
+						class="thumbs videothumbs"
+						controls
+						poster="/{{ file.thumb }}"
+					>
+						<source src="/{{ file.file }}" type="video/mp4"/>
+					</video>
+					<div class="btn-group">
+						<a href="{{ file.file }}" class="btn btn-default btn-sm" title="download file {{ file.file }}">
+							<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+						</a>
+						<button class="btn btn-danger btn-sm delete" data-href="timelap-archive.php?page={{ currentPage }}&delete={{ file.name }}">
+							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+						</button>
+					</div>
+				{% else %}
+					<img
+						class="thumbs videothumbs"
+						src="{{ file.thumb }}"
+						style="width:360px;height:270px;vertical-align: initial;"
+						title="ffmpeg rendert im Moment"
+					/>
+					<div class="btn-group">
+						<button class="btn btn-danger btn-sm">
+							<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+						</button>
+					</div>
+				{% endif %}
+			</div>
 
-	{%endfor%}
-    </div>
+		{% endfor %}
+	</div>
 
-    <p>{{paginator|raw}}</p>
+	<p>{{ paginator|raw }}</p>
 
-    <div class="alert alert-info" role="alert">
-	<h4>Disc usage:</h4>
-	{{diskUsage|raw}}
-    </div>
+	<div class="alert alert-info" role="alert">
+		<h4>Disc usage:</h4>
+		{{ diskUsage|raw }}
+	</div>
 {% endblock %}
 
 {% block footerIncludes %}
-    {{ parent() }}
-    <script src="static/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
-    <script src="static/script.js"></script>
+	{{ parent() }}
+	<script src="static/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+	<script src="static/script.js"></script>
 {% endblock %}

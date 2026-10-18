@@ -21,24 +21,23 @@
         <div class="col-lg-12">
             <form id="" action="" name="render" method="get">
                 <label for="thumbSlider" class="col-lg-12">
-		    Start/End image:
+                    Start/End image:
                     <input id="thumbSlider" type="text" class="span2" value="" name="range"/>
                 </label>
-		<label for="duration" class="col-lg-12">
-		    Duration per image:
-		    <input id="duration" name="duration" type="number" min="0.1" max="1" step="0.1" value="0.1" />
-		</label>
-
+                <label for="duration" class="col-lg-12">
+                    Duration per image:
+                    <input id="duration" name="duration" type="number" min="0.1" max="1" step="0.1" value="0.1"/>
+                </label>
 
                 <p>
                     <input
-                            class="btn btn-primary {% if renderFileExists %}blink{% endif %}"
-                            type="submit"
-                            value="{% if renderFileExists %}Warte auf Rendering{% else %}Erzeuge Timelap render file{% endif %}"
-                            {% if renderFileExists %}
-                                disabled="disabled"
-                                title="Warte auf render cronjob."
-                            {% endif %}
+                        class="btn btn-primary {% if renderFileExists %}blink{% endif %}"
+                        type="submit"
+                        value="{% if renderFileExists %}Warte auf Rendering{% else %}Erzeuge Timelap render file{% endif %}"
+                        {% if renderFileExists %}
+                        disabled="disabled"
+                        title="Warte auf render cronjob."
+                        {% endif %}
                     />
                 </p>
             </form>
@@ -52,7 +51,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-	    <textarea style="width:100%;height:300px;font-size:11px">
+            <textarea style="width:100%;height:300px;font-size:11px">
 		{{ renderFileData }}
 	    </textarea>
 
@@ -71,21 +70,32 @@
                 range: true,
                 min: 1,
                 max: Timelap.count,
-                tooltip_position: 'bottom',
-                value: [
-                    parseInt(Timelap.range[0]),
-                    parseInt(Timelap.range[1])
-                ]
+                tooltip_position: "bottom",
+                value: [parseInt(Timelap.range[0]), parseInt(Timelap.range[1])],
             });
-            $('#thumbSlider').slider().on('slideStop', function (evt) {
-                console.log(evt);
-                var newValue = evt.value;
-                $('#fromImage').attr('src', 'archive-thumbs/' + Timelap.files[newValue[0] - 1]);
-                $('#toImage').attr('src', 'archive-thumbs/' + Timelap.files[newValue[1] - 1]);
-            });
-            $('.slider-horizontal').css('width', '100%');
-            $('#fromImage').attr('src', 'archive-thumbs/' + Timelap.files[Timelap.range[0] - 1]);
-            $('#toImage').attr('src', 'archive-thumbs/' + Timelap.files[Timelap.range[1] - 1]);
+            $("#thumbSlider")
+                .slider()
+                .on("slideStop", function (evt) {
+                    console.log(evt);
+                    var newValue = evt.value;
+                    $("#fromImage").attr(
+                        "src",
+                        "archive-thumbs/" + Timelap.files[newValue[0] - 1],
+                    );
+                    $("#toImage").attr(
+                        "src",
+                        "archive-thumbs/" + Timelap.files[newValue[1] - 1],
+                    );
+                });
+            $(".slider-horizontal").css("width", "100%");
+            $("#fromImage").attr(
+                "src",
+                "archive-thumbs/" + Timelap.files[Timelap.range[0] - 1],
+            );
+            $("#toImage").attr(
+                "src",
+                "archive-thumbs/" + Timelap.files[Timelap.range[1] - 1],
+            );
         });
     </script>
 

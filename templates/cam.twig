@@ -5,56 +5,58 @@
 
 
 {% block head %}
-    {{ parent() }}
-    <meta http-equiv="refresh" content="60">
+	{{ parent() }}
+	<meta http-equiv="refresh" content="60">
 {% endblock %}
 
 {% block content %}
-    <p>
-    <div class="btn-group">
+	<p>
+		<div class="btn-group">
 
-	{% if recording %}
+			{% if recording %}
 
-	    <div class="btn btn-default blink">
-		<span class="glyphicon glyphicon-camera green" aria-hidden="true"></span> active
-	    </div>
-	    <div class="btn btn-default">
-		<a href="?enable=0">
-		    <span class="glyphicon glyphicon-stop red" aria-hidden="true"></span> disable
-		</a>
-	    </div>
+				<div class="btn btn-default blink">
+					<span class="glyphicon glyphicon-camera green" aria-hidden="true"></span> active
+				</div>
+				<div class="btn btn-default">
+					<a href="?enable=0">
+						<span class="glyphicon glyphicon-stop red" aria-hidden="true"></span> disable
+					</a>
+				</div>
 
-	{% else %}
+			{% else %}
 
-	    <div class="btn btn-default">
-		<span class="glyphicon glyphicon-camera red" aria-hidden="true"></span> inactive
-	    </div>
-	    <div class="btn btn-default">
-		<a href="?enable=1">
-		    <span class="glyphicon glyphicon-play green" aria-hidden="true"></span> enable
-		</a>
-	    </div>
+				<div class="btn btn-default">
+					<span class="glyphicon glyphicon-camera red" aria-hidden="true"></span> inactive
+				</div>
+				<div class="btn btn-default">
+					<a href="?enable=1">
+						<span class="glyphicon glyphicon-play green" aria-hidden="true"></span> enable
+					</a>
+				</div>
 
-	{% endif %}
+			{% endif %}
 
-	<div class="btn btn-default">
-	    <a href="cam.php"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;refresh</a>
-	</div>
-	<div class="btn btn-info">
-		<span title="Background script pid">Pid: {{processPid}}</span>
-	</div>
-    </div>
-</p>
+			<div class="btn btn-default">
+				<a href="cam.php"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;refresh</a>
+			</div>
+			<div class="btn btn-info">
+				<span title="Background script pid">Pid: {{ processPid }}</span>
+			</div>
+		</div>
+	</p>
 	<div class="container row">
 		<div class="col-sm-12 col-md-6 col-lg-6">
-			<img src="cam.jpg?{{time}}"
-				 style="width: 100%;height:auto;max-width:800px"/>
+			<img
+				src="cam.jpg?{{ time }}"
+				style="width: 100%;height:auto;max-width:800px"
+			/>
 
 		</div>
 		<div class="col-sm-12 col-md-6 col-lg-6">
-<p>MPEG-Streamer currently not working due to CORS ;o(</p>
-<p><a href="https://github.com/jacksonliam/mjpg-streamer" target="_blank">https://github.com/jacksonliam/mjpg-streamer</a>
-<!--
+			<p>MPEG-Streamer currently not working due to CORS ;o(</p>
+			<p><a href="https://github.com/jacksonliam/mjpg-streamer" target="_blank">https://github.com/jacksonliam/mjpg-streamer</a>
+				<!--
 			<img src="http://raspicam2.fritz.box:8080/?action=stream" style="width: 100%; height: auto; max-width: 800px"/>
 -->
 		</div>
