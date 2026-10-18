@@ -24,6 +24,7 @@ if (file_exists('usage.txt')) {
 }
 
 $range = [1, $filesCount];
+$duration = isset($_GET['duration']) ? str_replace(',', '.', $_GET['duration']) : '0.05';
 if (isset($_GET['range'])) {
     $range = explode(',', urldecode($_GET['range']));
     list($from, $to) = $range;
@@ -42,7 +43,7 @@ if (isset($_GET['range'])) {
         if (count($fileList)) {
             $list = array_reverse($fileList);
             $filename = 'TIMELAP.txt';
-            file_put_contents($filename, implode(PHP_EOL . 'duration 0.05' . PHP_EOL, $list));
+            file_put_contents($filename, implode(PHP_EOL . 'duration ' . $duration . PHP_EOL, $list));
             chmod($filename, 0777);
 
             // redirect to remove get params to prevent double renderings on page reload.
