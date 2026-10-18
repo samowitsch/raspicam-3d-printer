@@ -75,3 +75,29 @@ vendor/bin/php-cs-fixer fix
 
 Show running script file: ```ps aux | grep "cam.sh"``` or ```ps aux | grep "timelap.sh"```
 Kill running process: e.g. ```kill 1478``` the 1478 you get from ```ps aux``` from above
+
+## Screenshots
+
+### Home/Dashboard
+
+![Home/Dashboard](docs/images/home-dashboard.small.png)
+
+Simple dashboard to view the current image. The right side iframe with MJPEG-Streamer of second camery is currently disabled. Start/stop image recording. Every 30 secs a image will be recorded.
+
+### Image Archive
+
+![Home/Dashboard](docs/images/image-archive.small.png)
+
+The archive of the recorded images.
+
+### Timelap Maker
+
+![Home/Dashboard](docs/images/timelap-maker.small.png)
+
+Select start and end image of image archive to render a mp4 video with ffmpeg.
+
+### Timelap Archive
+
+![Home/Dashboard](docs/images/timelap-archive.small.png)
+
+Overview of the ffmpeg rendered timelaps.
