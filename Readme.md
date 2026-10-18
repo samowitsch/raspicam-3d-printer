@@ -17,7 +17,15 @@ photos with the attached camera and generating a timelap of it.
 > sudo apt install php libapache2-mod-php php-mbstring php-curl  
 > sudo apt install git  
 > sudo apt install ffmpeg  
-> sudo apt install imagemagick   
+> sudo apt install imagemagick  
+> sudo apt install bc
+
+### Apache2 PHP stuff
+
+To access in PHP ```shell_exec('rpicam-still --list-cameras')``` rpicam-still some group permissions has to be set:
+
+> sudo usermod -aG video www-data  
+> sudo systemctl restart apache2
 
 ### Install composer
 
