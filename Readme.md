@@ -7,7 +7,20 @@ photos with the attached camera and generating a timelap of it.
 
 ## Installation
 
-tbd
+### Install raspbian lite image (Trixie at time of writing)
+
+### Install additional packages
+
+> sudo apt update  
+> sudo apt upgrade  
+> sudo apt install apache2 -y  
+> sudo apt install php libapache2-mod-php php-mbstring php-curl  
+> sudo apt install git  
+> sudo apt install ffmpeg  
+
+### Install composer
+
+See https://getcomposer.org/download/ how to install composer. 
 
 ## Usage
 
@@ -31,17 +44,18 @@ and add at appropriate position
 www-data ALL=NOPASSWD: ALL
 ```
 
-### crontab for scripts
+### Crontab for scripts
 
 Crontab scripts are running every minute:
 
 ```bash
-* * * * * /var/www/html/scripts/cam.sh
+#* * * * * /var/www/html/scripts/cam.sh
+@reboot /var/www/html/scripts/cam.sh &
 * * * * * /var/www/html/scripts/timelap.sh
 ```
 see [https://crontab.guru](https://crontab.guru) for more crontab syntax
 
-### Conding
+### Coding
 
 ```bash
 vendor/bin/php-cs-fixer -vvv fix --dry-run

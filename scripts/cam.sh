@@ -13,7 +13,7 @@ ENABLED="/var/www/html/ENABLED"
 if [ -f "$ENABLED" ]
 then
 
-raspistill -br 45 -co 110 -ex auto --awb auto -w 1024 -h 768 -t 500 -q 60 -v -o /var/www/html/cam.jpg
+rpicam-still -br 45 -co 110 -ex auto --awb auto -w 1024 -h 768 -t 500 -q 60 -v -o /var/www/html/cam.jpg
 convert /var/www/html/cam.jpg -pointsize 30 -fill yellow -annotate +20+40 "$TEXT" /var/www/html/cam.jpg
 convert /var/www/html/cam.jpg -resize 240 -quality 60% /var/www/html/cam-thumb.jpg
 
