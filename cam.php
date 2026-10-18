@@ -29,17 +29,17 @@ if (file_exists('ENABLED')) {
 }
 
 $loader = new Twig\Loader\FilesystemLoader('templates');
-$twig = new Twig\Environment($loader, array(
+$twig = new Twig\Environment($loader, [
     'debug' => true,
     'cache' => 'compilation_cache',
-));
+]);
 
 $template = $twig->load('cam.twig');
 
 echo $template->render(
     [
-    'recording' => $enabled,
-    'processPid' => shell_exec('pgrep cam.sh') ?? 'background cam.sh not running?',
+        'recording' => $enabled,
+        'processPid' => shell_exec('pgrep cam.sh') ?? 'background cam.sh not running?',
         'time' => time(),
         'temp' => shell_exec('sudo vcgencmd measure_temp'),
         'clock' => shell_exec('sudo vcgencmd measure_clock arm'),

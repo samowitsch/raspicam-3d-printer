@@ -21,7 +21,7 @@ if (file_exists('usage.txt')) {
     $diskUsageItems = array_filter(explode(chr(10), $diskUsage));
 }
 
-$range = [1,$filesCount];
+$range = [1, $filesCount];
 if (isset($_GET['range'])) {
     $range = explode(',', urldecode($_GET['range']));
     list($from, $to) = $range;
@@ -53,10 +53,10 @@ if (isset($_GET['range'])) {
 $range = json_encode($range, JSON_PRETTY_PRINT);
 
 $loader = new Twig\Loader\FilesystemLoader('templates');
-$twig = new Twig\Environment($loader, array(
+$twig = new Twig\Environment($loader, [
     'debug' => true,
     'cache' => 'compilation_cache',
-    ));
+]);
 
 $template = $twig->load('timelap.twig');
 

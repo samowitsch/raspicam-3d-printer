@@ -10,18 +10,19 @@ return $config
         '@PSR12' => true,
         '@PSR2' => true,
     ])
-    ->setFinder(PhpCsFixer\Finder::create()
-        //->in(__DIR__)
-        ->exclude([
-	    'compilation_cache',
-	    '.git',
-	    'vendor',
-        ])
-        ->append([
-		'cam.php',
-		'timelap.php',
-		'cam-archive.php',
-		'timelap-archive.php',
-        ])
+    ->setFinder(
+        PhpCsFixer\Finder::create()
+            //->in(__DIR__)
+            ->exclude([
+                'compilation_cache',
+                '.git',
+                'vendor',
+            ])
+            ->append([
+                'cam.php',
+                'timelap.php',
+                'cam-archive.php',
+                'timelap-archive.php',
+            ])
     )
 ;

@@ -1,9 +1,12 @@
 {
     "config": {
-    	"audit": {
-	    "block-insecure": false
-	}
-    }, 
+        "audit": {
+            "block-insecure": false
+        },
+        "platform": {
+            "php": "8.4.26"
+        }
+    },
     "require": {
         "jasongrimes/paginator": "^1.0",
         "twig/twig": "~2.0",
