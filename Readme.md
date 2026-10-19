@@ -1,13 +1,44 @@
+<!-- TOC -->
+
+- [Readme](#readme)
+  - [Description](#description)
+  - [Installation](#installation)
+    - [Install raspbian lite image (Trixie at time of writing)](#install-raspbian-lite-image-trixie-at-time-of-writing)
+    - [Install additional packages](#install-additional-packages)
+    - [Apache2 PHP stuff](#apache2-php-stuff)
+    - [Install composer](#install-composer)
+    - [Git clone this repo](#git-clone-this-repo)
+  - [Usage](#usage)
+  - [Misc notes](#misc-notes)
+    - [sudoers file for php shell\_exec](#sudoers-file-for-php-shell_exec)
+    - [Crontab for scripts](#crontab-for-scripts)
+  - [Coding](#coding)
+  - [Misc](#misc)
+    - [Show running script file](#show-running-script-file)
+    - [Kill running script file](#kill-running-script-file)
+  - [Screenshots](#screenshots)
+    - [Home/Dashboard](#homedashboard)
+    - [Image Archive](#image-archive)
+    - [Timelap Maker](#timelap-maker)
+    - [Timelap Archive](#timelap-archive)
+
+<!-- /TOC -->
+
 # Readme
 
 ## Description
 
-This is my small raspicam project for my 3d printer. It has some basic features like taking sequence of 
-photos with the attached camera and generating a timelap of it.
+This is my small raspicam project for my DIY UM2 3d printer. It has some basic features like taking sequence of photos with the attached camera and generating a timelap of it. There is no 3d printer control like [OctoPrint](https://octoprint.org). It is only for monitoring.
+
+![](/docs/images/um2-3d-printer.png)
+
+The camera at the edge corner is handled by a Raspberry with installed MJPG-Streamer (I forgot the link to it. Maybe MJPG-Streamer). The other one facing at the print bed is using this repo.
 
 ## Installation
 
 ### Install raspbian lite image (Trixie at time of writing)
+
+The best is to use Raspberry Pi Imager for this.
 
 ### Install additional packages
 
@@ -31,13 +62,13 @@ To access in PHP ```shell_exec('rpicam-still --list-cameras')``` rpicam-still so
 
 See https://getcomposer.org/download/ how to install composer. 
 
+### Git clone this repo
+
+Clone this repo into ```/var/www/html``` Apache2 folder and fiddle around with permissions of files.
+
 ## Usage
 
-tbd
-
-## Screenshots
-
-tbd
+Should be self-explanatory. Start/Stop image recording at Home/Dashboard. Make timelaps in Timelap Maker. Look at images/videos in the archives.
 
 ## Misc notes
 
@@ -64,16 +95,21 @@ Crontab scripts are running every minute:
 ```
 see [https://crontab.guru](https://crontab.guru) for more crontab syntax
 
-### Coding
+## Coding
 
 ```bash
 vendor/bin/php-cs-fixer -vvv fix --dry-run
 vendor/bin/php-cs-fixer fix
 ```
 
-### Misc
+## Misc
+
+### Show running script file
 
 Show running script file: ```ps aux | grep "cam.sh"``` or ```ps aux | grep "timelap.sh"```
+
+### Kill running script file
+
 Kill running process: e.g. ```kill 1478``` the 1478 you get from ```ps aux``` from above
 
 ## Screenshots
@@ -94,10 +130,10 @@ The archive of the recorded images.
 
 ![Home/Dashboard](docs/images/timelap-maker.small.png)
 
-Select start and end image of image archive to render a mp4 video with ffmpeg.
+Select start and end image of image archive to render a mp4 video with ffmpeg. A duration of each image can be selected (screenshot is outdated).
 
 ### Timelap Archive
 
 ![Home/Dashboard](docs/images/timelap-archive.small.png)
 
-Overview of the ffmpeg rendered timelaps.
+Overview of the ffmpeg rendered timelaps. The little kid is waiting for current video rendering. When rendering is done the kid disappears.
