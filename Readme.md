@@ -12,15 +12,15 @@
   - [Misc notes](#misc-notes)
     - [sudoers file for php shell\_exec](#sudoers-file-for-php-shell_exec)
     - [Crontab for scripts](#crontab-for-scripts)
-  - [Coding](#coding)
-  - [Misc](#misc)
     - [Show running script file](#show-running-script-file)
     - [Kill running script file](#kill-running-script-file)
+    - [Coding notes](#coding-notes)
   - [Screenshots](#screenshots)
     - [Home/Dashboard](#homedashboard)
     - [Image Archive](#image-archive)
     - [Timelap Maker](#timelap-maker)
     - [Timelap Archive](#timelap-archive)
+  - [Known bugs](#known-bugs)
 
 <!-- /TOC -->
 
@@ -32,9 +32,11 @@ This is my small raspicam project for my DIY UM2 3d printer. It has some basic f
 
 ![](/docs/images/um2-3d-printer.png)
 
-The camera at the edge corner is handled by a Raspberry with installed MJPG-Streamer (I forgot the link to it. Maybe MJPG-Streamer). The other one facing at the print bed is using this repo.
+The camera at the edge corner is handled by a Raspberry with installed MJPG-Streamer (I forgot the link to it. MJPG-Streamer is a little bit outdated but does its job). The other one facing at the print bed is using this repo.
 
 ## Installation
+
+Hopefully complete. This readme is mostly for my own forgetfulness. ;o) 
 
 ### Install raspbian lite image (Trixie at time of writing)
 
@@ -95,15 +97,6 @@ Crontab scripts are running every minute:
 ```
 see [https://crontab.guru](https://crontab.guru) for more crontab syntax
 
-## Coding
-
-```bash
-vendor/bin/php-cs-fixer -vvv fix --dry-run
-vendor/bin/php-cs-fixer fix
-```
-
-## Misc
-
 ### Show running script file
 
 Show running script file: ```ps aux | grep "cam.sh"``` or ```ps aux | grep "timelap.sh"```
@@ -111,6 +104,13 @@ Show running script file: ```ps aux | grep "cam.sh"``` or ```ps aux | grep "time
 ### Kill running script file
 
 Kill running process: e.g. ```kill 1478``` the 1478 you get from ```ps aux``` from above
+
+### Coding notes
+
+```bash
+vendor/bin/php-cs-fixer -vvv fix --dry-run
+vendor/bin/php-cs-fixer fix
+```
 
 ## Screenshots
 
@@ -137,3 +137,7 @@ Select start and end image of image archive to render a mp4 video with ffmpeg. A
 ![Home/Dashboard](docs/images/timelap-archive.small.png)
 
 Overview of the ffmpeg rendered timelaps. The little kid is waiting for current video rendering. When rendering is done the kid disappears.
+
+## Known bugs
+
+* MJPG-Stream iframe on Home/Dashboard is currently disabled due to CORS
